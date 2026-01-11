@@ -102,7 +102,8 @@ async function generateParameters(runtime: IAgentRuntime, context: string, tool:
         runtime,
         context,
         modelClass: ModelClass.LARGE,
-        schema: tool.parameters,
+        // biome-ignore lint/suspicious/noExplicitAny: Type assertion needed due to zod version mismatch between @ai16z/eliza (3.23.8) and catalog (3.25.76)
+        schema: tool.parameters as any,
     });
 
     return object;
